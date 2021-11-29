@@ -1,3 +1,7 @@
+window.onload = () => {
+  // LOAD SOMETHING AAAAA
+}
+
 // Particles
 // Look ma, no external JS libraries required!
 const yayShapes = document.createElement("template");
@@ -37,6 +41,10 @@ class bgParticles extends HTMLElement {
 }
 window.customElements.define("bg-particles", bgParticles);
 
+// Add comms item component which state can be modified 
+
+
+
 // Footer component
 const commsFooterTemp = document.createElement("template");
 commsFooterTemp.innerHTML = `
@@ -55,11 +63,12 @@ commsFooterTemp.innerHTML = `
 		place-content: center;
 		padding: .25rem;
 		font-size: 120%;
-		background: red;
+		background: darkred;
 		margin: 0 2rem;
 		transition: all 400ms ease;
 		font-family: 'Lato', sans-serif;
 		border-radius: 10px 10px 0 0;
+    box-shadow: 0 0 12px rgba(0, 0 ,0 , .55);
 	}
 	#cf-wrap {
 		display: flex;
@@ -92,6 +101,7 @@ commsFooterTemp.innerHTML = `
 			font-size: 150%;
 			margin: 0;
 			border-radius: 0;
+      box-shadow: none;
 		}
 		#cf-wrap {
 			flex-direction: column;
