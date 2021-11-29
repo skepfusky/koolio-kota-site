@@ -1,2 +1,3 @@
 # commissions-thing
-ur mom
+
+I dunno, probably another fun project of mine, I guess lol

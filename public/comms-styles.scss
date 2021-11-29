@@ -1,0 +1,80 @@
+// mixins owo
+@mixin flexCenter($vCent: center, $hCent: center) {
+	display: flex;
+	justify-content: $hCent;
+	align-items: $vCent;
+}
+
+// main course
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,
+body {
+	height: 100%;
+}
+body {
+	background: rgba(black, 88%);
+	color: rgba(white, 90%);
+	z-index: -10;
+	overflow: hidden !important;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+main {
+	flex: 1 0 auto;
+}
+.background {
+	opacity: .75;
+	filter: opacity(75%);
+	z-index: -1;
+}
+.ftr-wrap {
+	$hoverTime: 350ms;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	opacity: 0.4;
+	filter: opacity(40%);
+	transform: translatey(10px);
+	transition: opacity $hoverTime ease, filter $hoverTime ease,
+		transform $hoverTime ease;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+		filter: opacity(100%);
+		transform: translatey(0);
+	}
+	animation: commsFooterPop 2s ease;
+}
+@keyframes commsFooterPop {
+	0% {
+		transform: translatey(60px) rotatex(100deg);
+		opacity: 1;
+		filter: opacity(100%);
+	}
+	60% {
+		transform: translatey(55px) rotatex(100deg);
+	}
+	75% {
+		transform: translatey(10px) rotatex(0deg);
+		opacity: 1;
+		filter: opacity(100%);
+	}
+	100% {
+		transform: translatey(10px) rotatex(0deg);
+		opacity: 0.4;
+		filter: opacity(40%);
+	}
+}
+comms-footer {
+	color: white;
+}
