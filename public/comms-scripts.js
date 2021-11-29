@@ -41,9 +41,19 @@ class bgParticles extends HTMLElement {
 }
 window.customElements.define("bg-particles", bgParticles);
 
-// Add comms item component which state can be modified 
-
-
+// TODO: Add comms item component which state can be modified 
+const commItemTemp = document.createElement("template");
+commItemTemp.innerHTML = `
+`;
+class commItem extends HTMLElement {
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    const shadowRoot = this.attachShadow({mode: "open"});
+    shadowRoot.appendChild(commItemTemp.content);
+  }
+}
 
 // Footer component
 const commsFooterTemp = document.createElement("template");
@@ -125,10 +135,10 @@ commsFooterTemp.innerHTML = `
     <div id="social-row">
       <nav>
         <ul>
-			  	<li><a href=""#"><i class="fab fa-youtube"></i></a></li>
-			  	<li><a href=""#"><i class="fab fa-github"></i></a></li>
-			  	<li><a href=""#"><i class="fab fa-twitter"></i></a></li>
-			  	<li><a href=""#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href=""#"><i class="fab fa-youtube"></i></a></li>
+          <li><a href=""#"><i class="fab fa-github"></i></a></li>
+          <li><a href=""#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href=""#"><i class="fab fa-instagram"></i></a></li>
         </ul>
       </nav>
     </div>
