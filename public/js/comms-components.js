@@ -1,36 +1,4 @@
-window.onload = () => {
-
-	/* Opens modal when 'Commission rules' button is clicked
-	 * Closes modal when the 'X' button is clicked and vice versa
-	 */
-	const tosBtn = document.getElementById('tos-btn');
-	const closeBtn = document.getElementById('close-btn');
-	
-	const tosModal = document.getElementById('tos-modal');
-	const commsBlur = document.getElementById('blur-comms');
-	const aboutBlur = document.getElementById('blur-about');
-	
-	tosBtn.onclick = () => {
-		tosModal.classList.remove('overlay-hidden');
-		tosModal.classList.add('overlay');
-		commsBlur.classList.remove('card-comms');
-		commsBlur.classList.add('card-comms_modal');
-		aboutBlur.classList.remove('card-about-wrap');
-		aboutBlur.classList.add('card-about-wrap_modal');
-	}
-	
-	closeBtn.onclick = () => {
-		tosModal.classList.remove('overlay');
-		tosModal.classList.add('overlay-hidden');
-		commsBlur.classList.remove('card-comms_modal');
-		commsBlur.classList.add('card-comms');
-		aboutBlur.classList.remove('card-about-wrap_modal');
-		aboutBlur.classList.add('card-about-wrap');
-	}
-}
-
 // Particles
-// Look ma, no external JS libraries required!
 const yayShapes = document.createElement("template");
 yayShapes.innerHTML = `
 	<style>
@@ -68,7 +36,7 @@ class bgParticles extends HTMLElement {
 }
 window.customElements.define("bg-particles", bgParticles);
 
-// TODO: Add comms item component which state can be modified 
+// Add comms item component which state can be modified 
 
 // Footer component
 const commsFooterTemp = document.createElement("template");
