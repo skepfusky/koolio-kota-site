@@ -1,197 +1,316 @@
-@mixin flexCenter($vCent: center, $hCent: center) {
-  display: flex;
-  justify-content: $hCent;
-  align-items: $vCent;
+// variables
+$hoverTime: 350ms;
+$btn_radius: 4px;
+
+// mixins
+@mixin flexParam($vCent: center, $hCent: center, $dir: row) {
+	display: flex;
+	justify-content: $hCent;
+	align-items: $vCent;
+	flex-direction: $dir;
+}
+@mixin posAbsolute($top: 0, $bottom: unset, $left: 0, $right: unset) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	bottom: $bottom;
+	right: $right;
+}
+@mixin blurModal() {
+	background: rgba(black, 75%);
+	filter: blur(5px) brightness(30%);
+	transition: all $hoverTime ease;
 }
 
+// main course
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
-
+*::before,
+*::after {
+	content:'';
+	display: block;
+}
 html,
 body {
-  height: 100%;
+	height: 100%;
 }
-
 body {
-  background: rgba(black, 88%);
-  color: rgba(white, 90%);
-  z-index: -10;
-  overflow: hidden !important;
+	background: rgba(black, 88%);
+	color: rgba(white, 90%);
+	z-index: -10;
+	font-family: "Lato", sans-serif;
+	overflow: hidden !important;
 }
-
+p {
+	font-size: 90%;
+}
 a {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
-
 div,
 span {
-  display: block;
+	display: block;
 }
-
 main {
-  flex: 1 0 auto;
+	flex: 1 0 auto;
 }
-
 .background {
-  opacity: 0.75;
-  filter: opacity(75%);
-  z-index: -9;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+	@include posAbsolute(0, unset, 0, unset);
+	opacity: 0.75;
+	filter: opacity(75%);
+	z-index: -9;
+	width: 100%;
 }
 
 .card {
-  $card_radius: 12px;
-  $card_strip1: #b80e0e;
-  $card_strip2: #870707;
+	$card_radius: 12px;
+	$card_strip1: #b80e0e;
+	$card_strip2: #870707;
+	
+	// Card wrapping - DO NOT TOUCH
+	&-wrap {
+		@include flexParam(center, center, row);
+		height: 100vh;
+		width: 100%;
+		overflow: hidden !important;
+	}
 
-  // Card wrapping - DO NOT TOUCH
-  &-wrap {
-    @include flexCenter();
-    height: 100vh;
-    width: 100%;
-  }
+	// Red stripes
+	&::before {
+		@include posAbsolute(-10px, unset, 0, unset);
+		height: 0.5rem;
+		width: 100%;
+		border-radius: $card_radius $card_radius 0 0;
+		background-image: linear-gradient(
+			45deg,
+			$card_strip1 25%,
+			$card_strip2 25%,
+			$card_strip2 50%,
+			$card_strip1 50%,
+			$card_strip1 75%,
+			$card_strip2 75%,
+			$card_strip2 100%
+		);
+		background-size: 56.57px 56.57px;
+	}
 
-  // Red stripes
-  &::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 0;
-    height: 0.5rem;
-    width: 100%;
-    border-radius: $card_radius $card_radius 0 0;
-    background-image: linear-gradient(
-      45deg,
-      $card_strip1 25%,
-      $card_strip2 25%,
-      $card_strip2 50%,
-      $card_strip1 50%,
-      $card_strip1 75%,
-      $card_strip2 75%,
-      $card_strip2 100%
-    );
-    background-size: 56.57px 56.57px;
-  }
+	background-color: #433131;
+	padding-top: 0.35rem;
+	height: 40rem;
+	width: 60rem;
+	border-radius: 0 0 $card_radius $card_radius;
+	position: relative;
+	display: flex;
+	box-shadow: 0 0 15px rgba(black, 75%);
+	margin: 0 .95rem;
 
-  background-color: #433131;
-  padding-top: 0.35rem;
-  height: 40rem;
-  width: 60rem;
-  border-radius: 0 0 $card_radius $card_radius;
-  position: relative;
-  display: flex;
-  box-shadow: 0 0 15px rgba(black, 75%);
+	// Commissions section
+	@mixin commsSection() {
+		height: 100%;
+		width: 100%;
+		padding: 1rem;
+	}
+	&-comms {
+		@include commsSection();
+		transition: all $hoverTime ease;
 
-  // Comms
-  &-comms {
-    height: 100%;
-    width: 100%;
-    padding: 1rem;
-  }
+		&_modal {
+			@include commsSection();
+			@include blurModal();
+		}
+	}
 
-  // About
-  &-about-wrap {
-    position: relative;
-    width: 35.5rem;
-  }
+	// About
+	&-about-wrap {
+		$aboutWrapWidth: 35.5rem;
+		position: relative;
+		width: $aboutWrapWidth;
+		transition: all $hoverTime ease;
+		
+		&_modal {
+			@include blurModal();
+			width: $aboutWrapWidth;
+		}
+	}
 
-  &-about {
-    @include flexCenter();
-    flex-direction: column;
-    height: 100%;
-    padding: 0.5rem;
-    font-size: 120%;
-    text-align: center;
-    padding-left: 1rem !important;
+	&-about {
+		// White border between the comms and the about profile
+		&::before {
+			@include posAbsolute(1.5rem, unset, 0, unset);
+			height: 90%;
+			width: 2px;
+			border-radius: 10px;
+			background: white;
+		}
 
-    // White border between the comms and the about profile
-    &::before {
-      content: "";
-      position: absolute;
-      top: 1.5rem;
-      left: 0;
-      height: 90%;
-      width: 2px;
-      border-radius: 10px;
-      background: white;
-    }
+		@include flexParam(center, center, column);
+		height: 100%;
+		padding: 0.5rem;
+		font-size: 120%;
+		text-align: center;
+		padding-left: 1rem !important;
 
-    img {
-      border-radius: 50%;
-      box-shadow: 0 0 12px rgba(black, 50%);
-      height: 10rem;
-    }
+		img {
+			border-radius: 50%;
+			box-shadow: 0 0 12px rgba(black, 50%);
+			height: 10rem;
+		}
 
-    article {
-      @include flexCenter(center, unset);
-      font-family: "Lato", sans-serif;
-      flex-direction: column;
-      > * {
-        margin-bottom: 12px;
-      }
-    }
+		article {
+			@include flexParam(center, unset, row);
+			font-family: "Lato", sans-serif;
+			flex-direction: column;
 
-    h2 {
-      margin-top: 12px;
-    }
+			> * {
+				margin-bottom: 12px;
+			}
+		}
 
-    button {
-      padding: 0.5rem 1rem;
-    }
-  }
+		h2 {
+			margin-top: 12px;
+		}
+
+		button {
+			padding: 0.5rem 1rem;
+			background: transparent;
+			border: 2px solid red;
+			color: white;
+			font-weight: bold;
+			border-radius: $btn_radius;
+			cursor: pointer;
+			transition: all $hoverTime ease;
+			&:hover {
+				transform: scale(1.125);
+				border-color: white;
+			}
+		}
+	}
 }
+
+// Blur card contents when tosBtn is triggered
+.overlay {
+	@include flexParam(center, unset, column);
+	@include posAbsolute(0, unset, 0, unset);
+	z-index: 1;
+	overflow-y: scroll;
+	width: 100%;
+	height: 100%;
+	padding: 2rem 5rem;
+	font-size: 140%;
+	text-align: center;
+	transition: opacity $hoverTime ease, transform $hoverTime ease;
+	opacity: 1;
+	visibility: visible;
+	transform: translatey(0px);
+	
+
+	h2 {
+		@include flexParam(center, center, column);
+		margin-bottom: .90rem;
+		
+		&::after {
+			margin-top: .5rem;
+			height: 4px;
+			width: 30%;
+			background: red;
+		}
+	}
+	h3 {
+		padding-block: 0.95rem;
+	}
+
+	&-hidden {
+		@include posAbsolute(0, unset, 0, unset);
+		opacity: 0;
+		visibility: hidden;
+		transform: translatey(20px);
+		transition: opacity $hoverTime ease;
+	}
+}
+#close-btn {
+	$btnOffset: 1.5rem;
+	position: fixed;
+	top: $btnOffset;
+	right: $btnOffset;
+	padding: 0.35rem 0.85rem;
+	background: transparent;
+	color: white;
+	border: 2px solid white;
+	transition: all $hoverTime ease;
+	border-radius: $btn_radius;
+	cursor: pointer;
+
+	&:hover {
+		border-color: red;
+		color: red;
+		box-shadow: 0 0 12px rgba(red, 50%);
+		text-shadow: 0 0 12px rgba(red, 50%);
+		transform: scale(1.15);
+	}
+}
+
 .ftr-wrap {
-  $hoverTime: 350ms;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0.4;
-  filter: opacity(40%);
-  transform: translatey(10px);
-  transition: opacity $hoverTime ease, filter $hoverTime ease,
-    transform $hoverTime ease;
+	@include posAbsolute(unset, 0, 0, unset);
+	width: 100%;
+	opacity: 0.4;
+	filter: opacity(40%);
+	transform: translatey(10px);
+	transition: opacity $hoverTime ease, filter $hoverTime ease,
+		transform $hoverTime ease;
 
-  &:hover,
-  &:focus {
-    opacity: 1;
-    filter: opacity(100%);
-    transform: translatey(0);
-  }
-
-  animation: commsFooterPop 2.5s ease;
+	&:hover,
+	&:focus {
+		opacity: 1;
+		filter: opacity(100%);
+		transform: translatey(0);
+	}
+	animation: commsFooterPop 2.5s ease;
 }
-
 @keyframes commsFooterPop {
-  0% {
-    transform: translatey(60px) rotatex(100deg);
-    opacity: 1;
-    filter: opacity(100%);
-  }
-  60% {
-    transform: translatey(55px) rotatex(100deg);
-  }
-  75% {
-    transform: translatey(10px) rotatex(0deg);
-    opacity: 1;
-    filter: opacity(100%);
-  }
-  100% {
-    transform: translatey(10px) rotatex(0deg);
-    opacity: 0.4;
-    filter: opacity(40%);
-  }
+	0% {
+		transform: translatey(60px) rotatex(100deg);
+		opacity: 1;
+		filter: opacity(100%);
+	}
+	60% {
+		transform: translatey(55px) rotatex(100deg);
+	}
+	75% {
+		transform: translatey(10px) rotatex(0deg);
+		opacity: 1;
+		filter: opacity(100%);
+	}
+	100% {
+		transform: translatey(10px) rotatex(0deg);
+		opacity: 0.4;
+		filter: opacity(40%);
+	}
 }
 
 comms-footer {
-  color: white;
+	color: gray;
+	transition: color $hoverTime ease;
+
+	&:hover {
+		color: white;
+	}
+	animation: commsFooterPopInner 2.5s ease;
+}
+
+@keyframes commsFooterPopInner {
+	0% {
+		color: white;
+	}
+	75% {
+		color: white;
+	}
+	100% {
+		color: gray;
+	}
 }

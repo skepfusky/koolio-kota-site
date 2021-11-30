@@ -1,5 +1,32 @@
 window.onload = () => {
-  // LOAD SOMETHING AAAAA
+
+	/* Opens modal when 'Commission rules' button is clicked
+	 * Closes modal when the 'X' button is clicked and vice versa
+	 */
+	const tosBtn = document.getElementById('tos-btn');
+	const closeBtn = document.getElementById('close-btn');
+	
+	const tosModal = document.getElementById('tos-modal');
+	const commsBlur = document.getElementById('blur-comms');
+	const aboutBlur = document.getElementById('blur-about');
+	
+	tosBtn.onclick = () => {
+		tosModal.classList.remove('overlay-hidden');
+		tosModal.classList.add('overlay');
+		commsBlur.classList.remove('card-comms');
+		commsBlur.classList.add('card-comms_modal');
+		aboutBlur.classList.remove('card-about-wrap');
+		aboutBlur.classList.add('card-about-wrap_modal');
+	}
+	
+	closeBtn.onclick = () => {
+		tosModal.classList.remove('overlay');
+		tosModal.classList.add('overlay-hidden');
+		commsBlur.classList.remove('card-comms_modal');
+		commsBlur.classList.add('card-comms');
+		aboutBlur.classList.remove('card-about-wrap_modal');
+		aboutBlur.classList.add('card-about-wrap');
+	}
 }
 
 // Particles
@@ -42,18 +69,6 @@ class bgParticles extends HTMLElement {
 window.customElements.define("bg-particles", bgParticles);
 
 // TODO: Add comms item component which state can be modified 
-const commItemTemp = document.createElement("template");
-commItemTemp.innerHTML = `
-`;
-class commItem extends HTMLElement {
-  constructor() {
-    super();
-  }
-  connectedCallback() {
-    const shadowRoot = this.attachShadow({mode: "open"});
-    shadowRoot.appendChild(commItemTemp.content);
-  }
-}
 
 // Footer component
 const commsFooterTemp = document.createElement("template");
@@ -135,10 +150,10 @@ commsFooterTemp.innerHTML = `
     <div id="social-row">
       <nav>
         <ul>
-          <li><a href=""#"><i class="fab fa-youtube"></i></a></li>
-          <li><a href=""#"><i class="fab fa-github"></i></a></li>
-          <li><a href=""#"><i class="fab fa-twitter"></i></a></li>
-          <li><a href=""#"><i class="fab fa-instagram"></i></a></li>
+			  	<li><a href=""#"><i class="fab fa-youtube"></i></a></li>
+			  	<li><a href=""#"><i class="fab fa-github"></i></a></li>
+			  	<li><a href=""#"><i class="fab fa-twitter"></i></a></li>
+			  	<li><a href=""#"><i class="fab fa-instagram"></i></a></li>
         </ul>
       </nav>
     </div>
