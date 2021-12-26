@@ -1,126 +1,126 @@
-@use 'mixins';
+@use "mixins";
 .card {
-	$card_radius: 12px;
-	$card_strip1: #b80e0e;
-	$card_strip2: #870707;
+  $card_radius: 12px;
+  $card_strip1: #b80e0e;
+  $card_strip2: #870707;
 
-	// Card wrapping - DO NOT TOUCH
-	&-wrap {
-		@include mixins.flexParam(center, center, row);
-		height: 100vh;
-		width: 100%;
-		overflow: hidden !important;
-	}
+  // Card wrapping - DO NOT TOUCH
+  &-wrap {
+    @include mixins.flexParam(center, center, row);
+    height: 100vh;
+    width: 100%;
+    overflow: hidden !important;
+  }
 
-	// Red stripes
-	&::before {
-		@include mixins.posAbsolute(-10px, unset, 0, unset);
-		height: 0.5rem;
-		width: 100%;
-		border-radius: $card_radius $card_radius 0 0;
-		background-image: linear-gradient(
-			45deg,
-			$card_strip1 25%,
-			$card_strip2 25%,
-			$card_strip2 50%,
-			$card_strip1 50%,
-			$card_strip1 75%,
-			$card_strip2 75%,
-			$card_strip2 100%
-		);
-		background-size: 56.57px 56.57px;
-	}
+  // Red stripes
+  &::before {
+    @include mixins.posAbsolute(-10px, unset, 0, unset);
+    height: 0.5rem;
+    width: 100%;
+    border-radius: $card_radius $card_radius 0 0;
+    background-image: linear-gradient(
+      45deg,
+      $card_strip1 25%,
+      $card_strip2 25%,
+      $card_strip2 50%,
+      $card_strip1 50%,
+      $card_strip1 75%,
+      $card_strip2 75%,
+      $card_strip2 100%
+    );
+    background-size: 56.57px 56.57px;
+  }
 
-	background-color: #433131;
-	padding-top: 0.35rem;
-	// height: 40rem;
-	width: 60rem;
-	border-radius: 0 0 $card_radius $card_radius;
-	position: relative;
-	display: flex;
-	box-shadow: 0 0 15px rgba(black, 75%);
-	margin: 0 0.95rem;
-	transition: all mixins.$hoverTime ease;
+  background-color: #433131;
+  padding-top: 0.35rem;
+  // height: 40rem;
+  width: 60rem;
+  border-radius: 0 0 $card_radius $card_radius;
+  position: relative;
+  display: flex;
+  box-shadow: 0 0 15px rgba(black, 75%);
+  margin: 0 0.95rem;
+  transition: all mixins.$hoverTime ease;
 
-	// Commissions section
-	@mixin commsSection() {
-		height: 100%;
-		width: 100%;
-		padding: 1rem;
-	}
-	&-comms {
-		@include commsSection();
-		transition: all mixins.$hoverTime ease;
+  // Commissions section
+  @mixin commsSection() {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+  }
+  &-comms {
+    @include commsSection();
+    transition: all mixins.$hoverTime ease;
 
-		&_modal {
-			@include commsSection();
-			@include mixins.blurModal();
-		}
-	}
+    &_modal {
+      @include commsSection();
+      @include mixins.blurModal();
+    }
+  }
 
-	// About
-	&-about-wrap {
-		$aboutWrapWidth: 35.5rem;
-		position: relative;
-		width: $aboutWrapWidth;
-		transition: all mixins.$hoverTime ease;
+  // About
+  &-about-wrap {
+    $aboutWrapWidth: 35.5rem;
+    position: relative;
+    width: $aboutWrapWidth;
+    transition: all mixins.$hoverTime ease;
 
-		&_modal {
-			@include mixins.blurModal();
-			width: $aboutWrapWidth;
-		}
-	}
+    &_modal {
+      @include mixins.blurModal();
+      width: $aboutWrapWidth;
+    }
+  }
 
-	&-about {
-		// White border between the comms and the about profile
-		&::before {
-			@include mixins.posAbsolute(1.5rem, unset, 0, unset);
-			height: 90%;
-			width: 2px;
-			border-radius: 10px;
-			background: white;
-		}
+  &-about {
+    // White border between the comms and the about profile
+    &::before {
+      @include mixins.posAbsolute(1.5rem, unset, 0, unset);
+      height: 90%;
+      width: 2px;
+      border-radius: 10px;
+      background: white;
+    }
 
-		@include mixins.flexParam(center, center, column);
-		height: 100%;
-		padding: 0.5rem;
-		font-size: 120%;
-		text-align: center;
-		padding-left: 1rem !important;
+    @include mixins.flexParam(center, center, column);
+    height: 100%;
+    padding: 0.5rem;
+    font-size: 120%;
+    text-align: center;
+    padding-left: 1rem !important;
 
-		img {
-			border-radius: 50%;
-			box-shadow: 0 0 12px rgba(black, 50%);
-			height: 10rem;
-		}
+    img {
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(black, 50%);
+      height: 10rem;
+    }
 
-		article {
-			@include mixins.flexParam(center, unset, row);
-			font-family: "Lato", sans-serif;
-			flex-direction: column;
+    article {
+      @include mixins.flexParam(center, unset, row);
+      font-family: "Lato", sans-serif;
+      flex-direction: column;
 
-			> * {
-				margin-bottom: 12px;
-			}
-		}
+      > * {
+        margin-bottom: 12px;
+      }
+    }
 
-		h2 {
-			margin-top: 12px;
-		}
+    h2 {
+      margin-top: 12px;
+    }
 
-		button {
-			padding: 0.5rem 1rem;
-			background: transparent;
-			border: 2px solid red;
-			color: white;
-			font-weight: bold;
-			border-radius: mixins.$btn_radius;
-			cursor: pointer;
-			transition: all mixins.$hoverTime ease;
-			&:hover {
-				transform: scale(1.125);
-				border-color: white;
-			}
-		}
-	}
+    button {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 2px solid red;
+      color: white;
+      font-weight: bold;
+      border-radius: mixins.$btn_radius;
+      cursor: pointer;
+      transition: all mixins.$hoverTime ease;
+      &:hover {
+        transform: scale(1.125);
+        border-color: white;
+      }
+    }
+  }
 }

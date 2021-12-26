@@ -1,20 +1,20 @@
 @mixin flexParam($vCent: center, $hCent: center, $dir: row) {
-	display: flex;
-	justify-content: $hCent;
-	align-items: $vCent;
-	flex-direction: $dir;
+  display: flex;
+  justify-content: $hCent;
+  align-items: $vCent;
+  flex-direction: $dir;
 }
 @mixin posAbsolute($top: 0, $bottom: unset, $left: 0, $right: unset) {
-	position: absolute;
-	top: $top;
-	left: $left;
-	bottom: $bottom;
-	right: $right;
+  position: absolute;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  right: $right;
 }
 @mixin blurModal() {
-	background: rgba(black, 75%);
-	filter: blur(5px) brightness(30%);
-	transition: all $hoverTime ease;
+  background: rgba(black, 75%);
+  filter: blur(5px) brightness(30%);
+  transition: all $hoverTime ease;
 }
 
 // vars
