@@ -1,24 +1,12 @@
 {
-  "name": "commissions-thing",
-  "version": "1.0.0",
-  "description": "I dunno, probably another fun project of mine, I guess lol",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "dev": "parcel public/commissions.html"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/skepfusky/commissions-thing.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/skepfusky/commissions-thing/issues"
-  },
-  "homepage": "https://github.com/skepfusky/commissions-thing#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5",
-    "sass": "^1.43.5"
+    "nuxt": "3.0.0-rc.1"
   }
 }
