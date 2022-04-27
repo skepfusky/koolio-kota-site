@@ -1,0 +1,24 @@
+{
+  "name": "commissions-thing",
+  "version": "1.0.0",
+  "description": "I dunno, probably another fun project of mine, I guess lol",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel public/commissions.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skepfusky/commissions-thing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skepfusky/commissions-thing/issues"
+  },
+  "homepage": "https://github.com/skepfusky/commissions-thing#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.43.5"
+  }
+}
