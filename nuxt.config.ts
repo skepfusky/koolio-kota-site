@@ -4,6 +4,17 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
   typescript: {
     strict: true,
-    shim: false
-  }
-})
+    shim: false,
+  },
+  meta: {
+    link: [{ rel: "icon", href: "/favicon.ico" }],
+  },
+  css: ["/assets/global.scss"],
+  modules: ["@nuxtjs/tailwindcss"],
+  webpack: {
+    optimizeCSS: true,
+  },
+  tailwindcss: {
+    viewer: false,
+  },
+});
